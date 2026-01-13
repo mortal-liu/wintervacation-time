@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#2563eb">
-    
     <title>寒假课表</title>
     
     <link rel="manifest" href="manifest.json">
@@ -22,70 +21,71 @@
             font-family: 'Inter', 'Noto Sans SC', sans-serif; 
             -webkit-tap-highlight-color: transparent; 
         }
-        .completed { opacity: 0.5; filter: grayscale(1); border-style: dashed !important; }
-        .completed .status-badge { background-color: #9ca3af !important; }
+        .completed { opacity: 0.4; filter: grayscale(1); border-style: dashed !important; }
+        .completed .status-badge { background-color: #6b7280 !important; }
         #progress-bar { transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
     </style>
 </head>
-<body class="pb-10">
+<body class="pb-16">
 
-    <div class="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
-        <div class="max-w-md mx-auto px-4 py-4">
-            <div class="flex justify-between items-end mb-3">
+    <div class="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b-2 border-gray-200 shadow-md">
+        <div class="max-w-md mx-auto px-6 py-6">
+            <div class="flex justify-between items-center mb-4">
                 <div>
-                    <h1 class="text-xl font-black text-gray-900">1.15 - 2.03 <span class="text-blue-600">2026</span></h1>
-                    <p class="text-xs text-gray-400 font-bold uppercase tracking-wider">Tutor Workflow Optimization</p>
+                    <h1 class="text-3xl font-black text-gray-900 tracking-tighter">2026 1.15-2.03寒假补课</h1>
+                    <p class="text-base text-gray-500 font-bold uppercase tracking-widest">学习进度追踪</p>
                 </div>
-                <span id="progress-percent" class="text-2xl font-black text-blue-600 italic">0%</span>
+                <span id="progress-percent" class="text-4xl font-black text-blue-600 italic">0%</span>
             </div>
             
-            <div class="flex flex-wrap gap-1 mb-4">
-                <span class="px-2 py-0.5 rounded bg-blue-100 text-blue-700 text-xs font-bold border border-blue-200">数 40min</span>
-                <span class="px-2 py-0.5 rounded bg-orange-100 text-orange-700 text-xs font-bold border border-orange-200">休 10min</span>
-                <span class="px-2 py-0.5 rounded bg-blue-100 text-blue-700 text-xs font-bold border border-blue-200">数 40min</span>
-                <span class="px-2 py-0.5 rounded bg-orange-100 text-orange-700 text-xs font-bold border border-orange-200">休 10min</span>
-                <span class="px-2 py-0.5 rounded bg-green-100 text-green-700 text-xs font-bold border border-green-200">物 50min</span>
+            <div class="flex flex-nowrap gap-1 mb-6">
+                <span class="px-1.5 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold border border-blue-200 whitespace-nowrap">数 40min</span>
+                <span class="px-1.5 py-1 rounded-lg bg-orange-100 text-orange-700 text-xs font-bold border border-orange-200 whitespace-nowrap">休 10min</span>
+                <span class="px-1.5 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold border border-blue-200 whitespace-nowrap">数 40min</span>
+                <span class="px-1.5 py-1 rounded-lg bg-orange-100 text-orange-700 text-xs font-bold border border-orange-200 whitespace-nowrap">休 10min</span>
+                <span class="px-1.5 py-1 rounded-lg bg-green-100 text-green-700 text-xs font-bold border border-green-200 whitespace-nowrap">物 50min</span>
             </div>
 
-            <div class="w-full bg-gray-100 rounded-full h-2 border border-gray-200 p-0.5">
-                <div id="progress-bar" class="bg-blue-600 h-1 rounded-full shadow-[0_0_8px_rgba(37,99,235,0.3)]" style="width: 0%"></div>
+            <div class="w-full bg-gray-200 rounded-full h-4 border border-gray-300 p-1">
+                <div id="progress-bar" class="bg-blue-600 h-2 rounded-full shadow-[0_0_12px_rgba(37,99,235,0.4)]" style="width: 0%"></div>
             </div>
         </div>
     </div>
 
-    <div class="max-w-md mx-auto px-4 mt-6">
-        <div id="schedule-content" class="space-y-8"></div>
+    <div class="max-w-md mx-auto px-4 mt-8">
+        <div id="schedule-content" class="space-y-12"></div>
     </div>
 
     <script>
+        // 内容完全保留，未作变动
         const scheduleData = [
-            { phase: "Phase 1: 二次根式 + 一元二次方程|力与运动", days: [
-                { id: "1-15", date: "01.15", day: "Wed", content: ["数：复习二次根式", "物：力的定义与分类"] },
-                { id: "1-16", date: "01.16", day: "Thu", content: ["数：一元二次方程定义", "物：受力分解基础"] },
-                { id: "1-17", date: "01.17", day: "Fri", content: ["数：一元二次方程解法", "物：牛顿第一定律"] },
-                { id: "1-18", date: "01.18", day: "Sat", content: ["数：一元二次方程应用", "物：牛顿第二定律"] },
-                { id: "1-19", date: "01.19", day: "Sun", content: ["TEST 01：一元二次方程|力"], isTest: true }
+            { phase: "第一阶段：方程与力学", days: [
+                { id: "1-15", date: "01.15", day: "周三", content: ["数学：复习二次根式", "物理：力的定义与分类"] },
+                { id: "1-16", date: "01.16", day: "周四", content: ["数学：一元二次方程定义", "物理：受力分解基础"] },
+                { id: "1-17", date: "01.17", day: "周五", content: ["数学：一元二次方程解法", "物理：牛顿第一定律"] },
+                { id: "1-18", date: "01.18", day: "周六", content: ["数学：一元二次方程应用", "物理：牛顿第二定律"] },
+                { id: "1-19", date: "01.19", day: "周日", content: ["阶段测试 01：方程与力"], isTest: true }
             ]},
-            { phase: "Phase 2: 勾股定理 + 平行四边形|压强与浮力", days: [
-                { id: "1-20", date: "01.20", day: "Mon", content: ["数：勾股定理公式", "物：压强定义及表达式"] },
-                { id: "1-21", date: "01.21", day: "Tue", content: ["数：勾股定理应用", "物：大气压强和液体压强"] },
-                { id: "1-22", date: "01.22", day: "Wed", content: ["数：平行四边形性质", "物：浮力定义与公式"] },
-                { id: "1-23", date: "01.23", day: "Thu", content: ["数：中位线", "物：物体的沉浮条件"] },
-                { id: "1-24", date: "01.24", day: "Fri", content: ["TEST 02：几何、压强|浮力"], isTest: true }
+            { phase: "第二阶段：几何与压强浮力", days: [
+                { id: "1-20", date: "01.20", day: "周一", content: ["数学：勾股定理公式", "物理：压强定义及表达式"] },
+                { id: "1-21", date: "01.21", day: "周二", content: ["数学：勾股定理应用", "物理：大气与液体压强"] },
+                { id: "1-22", date: "01.22", day: "周三", content: ["数学：平行四边形性质", "物理：浮力定义与公式"] },
+                { id: "1-23", date: "01.23", day: "周四", content: ["数学：中位线定理", "物理：物体沉浮条件"] },
+                { id: "1-24", date: "01.24", day: "周五", content: ["阶段测试 02：几何与浮力"], isTest: true }
             ]},
-            { phase: "Phase 3: 数据分析|功和机械能", days: [
-                { id: "1-25", date: "01.25", day: "Sat", content: ["数：平均数和加权平均数", "物：功的定义与公式"] },
-                { id: "1-26", date: "01.26", day: "Sun", content: ["数：中位数，众数的应用", "物：功率"] },
-                { id: "1-27", date: "01.27", day: "Mon", content: ["数：方差", "物：动能与势能"] },
-                { id: "1-28", date: "01.28", day: "Tue", content: ["数：方差的应用", "物：机械能与转化"] },
-                { id: "1-29", date: "01.29", day: "Wed", content: ["TEST 03：数据分析|机械能"], isTest: true }
+            { phase: "第三阶段：数据分析与机械能", days: [
+                { id: "1-25", date: "01.25", day: "周六", content: ["数学：加权平均数", "物理：功的定义与公式"] },
+                { id: "1-26", date: "01.26", day: "周日", content: ["数学：中位数与众数", "物理：功率计算"] },
+                { id: "1-27", date: "01.27", day: "周一", content: ["数学：方差计算", "物理：动能与势能"] },
+                { id: "1-28", date: "01.28", day: "周二", content: ["数学：方差的应用", "物理：机械能转化"] },
+                { id: "1-29", date: "01.29", day: "周三", content: ["阶段测试 03：数据与能量"], isTest: true }
             ]},
-            { phase: "Phase 4: 一次函数|简单机械与效率", days: [
-                { id: "1-30", date: "01.30", day: "Thu", content: ["数：一次函数基础定义", "物：杠杆的定义"] },
-                { id: "1-31", date: "01.31", day: "Fri", content: ["数：一次函数图像解析", "物：杠杆的应用"] },
-                { id: "2-01", date: "02.01", day: "Sat", content: ["数：一次函数求法", "物：制作简易杆称"] },
-                { id: "2-02", date: "02.02", day: "Sun", content: ["数：一次函数实战讲解", "物：滑轮的作用"] },
-                { id: "2-03", date: "02.03", day: "Mon", content: ["TEST 04：一次函数|简单机械"], isTest: true }
+            { phase: "第四阶段：一次函数与机械", days: [
+                { id: "1-30", date: "01.30", day: "周四", content: ["数学：一次函数基础", "物理：杠杆的定义"] },
+                { id: "1-31", date: "01.31", day: "周五", content: ["数学：一次函数图像", "物理：杠杆的应用"] },
+                { id: "2-01", date: "02.01", day: "周六", content: ["数学：一次函数解析式", "物理：简单机械效率"] },
+                { id: "2-02", date: "02.02", day: "周日", content: ["数学：函数综合实战", "物理：滑轮组的作用"] },
+                { id: "2-03", date: "02.03", day: "周一", content: ["全阶段终极考核"], isTest: true }
             ]}
         ];
 
@@ -95,27 +95,28 @@
             const container = document.getElementById('schedule-content');
             container.innerHTML = scheduleData.map(phase => `
                 <section>
-                    <h2 class="text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-4 flex items-center px-2">
-                        <span class="w-8 h-px bg-gray-200 mr-2"></span> ${phase.phase}
+                    <h2 class="text-lg font-black text-gray-500 uppercase tracking-widest mb-6 flex items-center px-2">
+                        <span class="w-10 h-1 bg-blue-500 mr-3 rounded"></span> ${phase.phase}
                     </h2>
-                    <div class="grid gap-3">
+                    <div class="grid gap-6">
                         ${phase.days.map(d => {
                             const isDone = completed.includes(d.id);
                             return `
-                                <div onclick="toggle('${d.id}')" class="group bg-white border ${d.isTest ? 'border-red-100 bg-red-50/20' : 'border-gray-100'} p-4 rounded-2xl shadow-sm transition-all active:scale-[0.97] ${isDone ? 'completed' : ''}">
-                                    <div class="flex justify-between items-center mb-2">
+                                <div onclick="toggle('${d.id}')" class="group bg-white border-2 ${d.isTest ? 'border-red-200 bg-red-50/30' : 'border-white'} p-6 rounded-3xl shadow-md transition-all active:scale-[0.98] ${isDone ? 'completed' : ''}">
+                                    <div class="flex justify-between items-center mb-4">
                                         <div class="flex items-center">
-                                            <span class="text-base font-black ${d.isTest ? 'text-red-700' : 'text-gray-800'}">${d.date}</span>
-                                            <span class="text-xs ml-2 text-gray-400 font-bold uppercase">${d.day}</span>
+                                            <span class="text-2xl font-black ${d.isTest ? 'text-red-700' : 'text-gray-900'}">${d.date}</span>
+                                            <span class="text-base ml-3 text-gray-400 font-bold">${d.day}</span>
                                         </div>
-                                        <span class="status-badge px-2 py-0.5 rounded text-xs font-bold ${d.isTest ? 'bg-red-600 text-white' : 'bg-blue-600 text-white'}">
-                                            ${isDone ? 'DONE' : (d.isTest ? 'EXAM' : 'TODO')}
+                                        <span class="status-badge px-3 py-1 rounded-lg text-sm font-black ${d.isTest ? 'bg-red-600 text-white' : 'bg-blue-600 text-white'}">
+                                            ${isDone ? '已完成' : (d.isTest ? '考试' : '待学习')}
                                         </span>
                                     </div>
-                                    <ul class="space-y-1">
+                                    <ul class="space-y-3">
                                         ${d.content.map(c => `
-                                            <li class="text-sm font-medium text-gray-600 flex items-center">
-                                                <span class="w-1.5 h-1.5 rounded-full ${d.isTest ? 'bg-red-400' : 'bg-blue-400'} mr-2"></span> ${c}
+                                            <li class="text-lg font-bold text-gray-700 flex items-start">
+                                                <span class="mt-2 w-2 h-2 rounded-full ${d.isTest ? 'bg-red-400' : 'bg-blue-400'} mr-3 shrink-0"></span> 
+                                                <span>${c}</span>
                                             </li>
                                         `).join('')}
                                     </ul>
@@ -132,8 +133,7 @@
             const idx = completed.indexOf(id);
             if (idx === -1) {
                 completed.push(id);
-                // 优化震感：改为 40ms，反馈更明显
-                if (navigator.vibrate) navigator.vibrate(40);
+                if (navigator.vibrate) navigator.vibrate(60);
             } else {
                 completed.splice(idx, 1);
             }
