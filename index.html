@@ -2,14 +2,15 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="theme-color" content="#2563eb">
     <title>寒假管理系统 | 张广洲</title>
     
     <link rel="manifest" href="manifest.json">
+    
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/2693/2693507.png">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/2232/2232688.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
@@ -88,7 +89,7 @@
             const container = document.getElementById('schedule-content');
             container.innerHTML = scheduleData.map(phase => `
                 <section>
-                    <h2 class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-4 flex items-center">
+                    <h2 class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-4 flex items-center px-2">
                         <span class="w-8 h-px bg-gray-200 mr-2"></span> ${phase.phase}
                     </h2>
                     <div class="grid gap-3">
