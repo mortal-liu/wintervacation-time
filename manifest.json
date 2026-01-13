@@ -1,6 +1,6 @@
 {
-  "name": "张广洲寒假课表",
-  "short_name": "广洲课表",
+  "name": "寒假课表",
+  "short_name": "寒假课表",
   "description": "2026寒假数学物理家教日程管理系统",
   "start_url": "index.html",
   "display": "standalone",
@@ -10,8 +10,7 @@
     {
       "src": "https://cdn-icons-png.flaticon.com/512/2232/2232688.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     }
   ]
 }
