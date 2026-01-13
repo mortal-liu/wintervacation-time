@@ -9,11 +9,10 @@
     
     <link rel="manifest" href="manifest.json">
     
-    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2232/2232688.png">
-    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/2232/2232688.png">
-    
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/2232/2232688.png">
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2232/2232688.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
@@ -30,8 +29,8 @@
         <div class="max-w-md mx-auto px-4 py-4">
             <div class="flex justify-between items-end mb-3">
                 <div>
-                    <h1 class="text-xl font-black text-gray-900 italic tracking-tighter">JAN-FEB <span class="text-blue-600">2026</span></h1>
-                    <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Tutor Schedule Manager</p>
+                    <h1 class="text-xl font-black text-gray-900">1.15 - 2.03 <span class="text-blue-600">2026</span></h1>
+                    <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Tutor Workflow Optimization</p>
                 </div>
                 <span id="progress-percent" class="text-2xl font-black text-blue-600 italic">0%</span>
             </div>
@@ -55,35 +54,35 @@
     </div>
 
     <script>
-        // 基于 19a03a4e4c7cc85ca77c2b94aaf2cf69.jpg 同步的完整日程数据
+        // 这里完全保留了你手动修改后的所有正文内容
         const scheduleData = [
-            { phase: "Phase 1: 二次根式 + 一元二次方程 | 力与运动", days: [
-                { id: "1-15", date: "01.15", day: "Wed", content: ["数：复习函数定义", "物：力的定义与分类"] },
-                { id: "1-16", date: "01.16", day: "Thu", content: ["数：一次函数图像性质", "物：受力分解基础"] },
-                { id: "1-17", date: "01.17", day: "Fri", content: ["数：一次函数应用案例", "物：牛顿第一定律"] },
-                { id: "1-18", date: "01.18", day: "Sat", content: ["数：反比例函数图像", "物：牛顿第二定律"] },
-                { id: "1-19", date: "01.19", day: "Sun", content: ["TEST 01：函数与牛顿定律"], isTest: true }
+            { phase: "Phase 1: 二次根式 + 一元二次方程|力与运动", days: [
+                { id: "1-15", date: "01.15", day: "Wed", content: ["数：复习二次根式", "物：力的定义与分类"] },
+                { id: "1-16", date: "01.16", day: "Thu", content: ["数：一元二次方程定义", "物：受力分解基础"] },
+                { id: "1-17", date: "01.17", day: "Fri", content: ["数：一元二次方程解法", "物：牛顿第一定律"] },
+                { id: "1-18", date: "01.18", day: "Sat", content: ["数：一元二次方程应用", "物：牛顿第二定律"] },
+                { id: "1-19", date: "01.19", day: "Sun", content: ["TEST 01：一元二次方程|力"], isTest: true }
             ]},
-            { phase: "Phase 2: 几何应用与压强浮力", days: [
-                { id: "1-20", date: "01.20", day: "Mon", content: ["数：二次根式计算", "物：压强定义及公式"] },
-                { id: "1-21", date: "01.21", day: "Tue", content: ["数：勾股定理公式", "物：压强综合题练习"] },
-                { id: "1-22", date: "01.22", day: "Wed", content: ["数：勾股定理实际应用", "物：浮力定义与公式"] },
-                { id: "1-23", date: "01.23", day: "Thu", content: ["数：平行四边形判定", "物：物体的沉浮条件"] },
-                { id: "1-24", date: "01.24", day: "Fri", content: ["TEST 02：几何与压强浮力"], isTest: true }
+            { phase: "Phase 2: 勾股定理 + 平行四边形|压强与浮力", days: [
+                { id: "1-20", date: "01.20", day: "Mon", content: ["数：勾股定理公式", "物：压强定义及表达式"] },
+                { id: "1-21", date: "01.21", day: "Tue", content: ["数：勾股定理应用", "物：大气压强和液体压强"] },
+                { id: "1-22", date: "01.22", day: "Wed", content: ["数：平行四边形性质", "物：浮力定义与公式"] },
+                { id: "1-23", date: "01.23", day: "Thu", content: ["数：中位线", "物：物体的沉浮条件"] },
+                { id: "1-24", date: "01.24", day: "Fri", content: ["TEST 02：几何、压强|浮力"], isTest: true }
             ]},
-            { phase: "Phase 3: 数据分析与机械能", days: [
-                { id: "1-25", date: "01.25", day: "Sat", content: ["数：平均数/中位数/众数", "物：功的定义与公式"] },
-                { id: "1-26", date: "01.26", day: "Sun", content: ["数：数据分析经典题", "物：动能与势能"] },
-                { id: "1-27", date: "01.27", day: "Mon", content: ["数：一元二次方程解法", "物：做功与机械能"] },
-                { id: "1-28", date: "01.28", day: "Tue", content: ["数：方程应用题攻克", "物：机械能守恒练习"] },
-                { id: "1-29", date: "01.29", day: "Wed", content: ["TEST 03：方程与机械能"], isTest: true }
+            { phase: "Phase 3: 数据分析|功和机械能", days: [
+                { id: "1-25", date: "01.25", day: "Sat", content: ["数：平均数和加权平均数", "物：功的定义与公式"] },
+                { id: "1-26", date: "01.26", day: "Sun", content: ["数：中位数，众数的应用", "物：功率"] },
+                { id: "1-27", date: "01.27", day: "Mon", content: ["数：方差", "物：动能与势能"] },
+                { id: "1-28", date: "01.28", day: "Tue", content: ["数：方差的应用", "物：机械能与转化"] },
+                { id: "1-29", date: "01.29", day: "Wed", content: ["TEST 03：数据分析|机械能"], isTest: true }
             ]},
-            { phase: "Phase 4: 二次函数与电路", days: [
-                { id: "1-30", date: "01.30", day: "Thu", content: ["数：二次函数基础定义", "物：U, I, R 电路基础"] },
-                { id: "1-31", date: "01.31", day: "Fri", content: ["数：二次函数图像解析", "物：I = U/R 欧姆定律"] },
-                { id: "2-01", date: "02.01", day: "Sat", content: ["数：二次函数求法", "物：串/并联电路特点"] },
-                { id: "2-02", date: "02.02", day: "Sun", content: ["数：二次函数综合题", "物：电路实战分析"] },
-                { id: "2-03", date: "02.03", day: "Mon", content: ["TEST 04：全阶段综合考核"], isTest: true }
+            { phase: "Phase 4: 一次函数|简单机械与效率", days: [
+                { id: "1-30", date: "01.30", day: "Thu", content: ["数：一次函数基础定义", "物：杠杆的定义"] },
+                { id: "1-31", date: "01.31", day: "Fri", content: ["数：一次函数图像解析", "物：杠杆的应用"] },
+                { id: "2-01", date: "02.01", day: "Sat", content: ["数：一次函数求法", "物：制作简易杆称"] },
+                { id: "2-02", date: "02.02", day: "Sun", content: ["数：一次函数实战讲解", "物：滑轮的作用"] },
+                { id: "2-03", date: "02.03", day: "Mon", content: ["TEST 04：一次函数|简单机械"], isTest: true }
             ]}
         ];
 
@@ -93,7 +92,7 @@
             const container = document.getElementById('schedule-content');
             container.innerHTML = scheduleData.map(phase => `
                 <section>
-                    <h2 class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-4 flex items-center px-1">
+                    <h2 class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-4 flex items-center px-2">
                         <span class="w-8 h-px bg-gray-200 mr-2"></span> ${phase.phase}
                     </h2>
                     <div class="grid gap-3">
