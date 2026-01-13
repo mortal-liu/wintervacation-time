@@ -16,14 +16,16 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
     <style>
-        body { 
-            background-color: #f3f4f6; 
-            font-family: 'Inter', 'Noto Sans SC', sans-serif; 
-            -webkit-tap-highlight-color: transparent; 
-        }
+        body { background-color: #f3f4f6; font-family: 'Inter', 'Noto Sans SC', sans-serif; -webkit-tap-highlight-color: transparent; }
         .completed { opacity: 0.4; filter: grayscale(1); border-style: dashed !important; }
         .completed .status-badge { background-color: #6b7280 !important; }
         #progress-bar { transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        
+        /* 关键修改：为阶段标题和任务卡片同时设置滚动间距，防止被导航栏遮挡 */
+        section, .task-card { 
+            scroll-margin-top: 220px; 
+            transition: all 0.3s ease;
+        }
     </style>
 </head>
 <body class="pb-16">
@@ -32,7 +34,7 @@
         <div class="max-w-md mx-auto px-6 py-6">
             <div class="flex justify-between items-center mb-4">
                 <div>
-                    <h1 class="text-3xl font-black text-gray-900 tracking-tighter">2026 1.15-2.03寒假</h1>
+                    <h1 class="text-3xl font-black text-gray-900 tracking-tighter">2026 1.15-2.03 寒假</h1>
                     <p class="text-base text-gray-500 font-bold uppercase tracking-widest">学习进度追踪</p>
                 </div>
                 <span id="progress-percent" class="text-4xl font-black text-blue-600 italic">0%</span>
@@ -57,35 +59,35 @@
     </div>
 
     <script>
-        // 内容完全保留，未作变动
+        // 日期与星期已校对：1.15是周四
         const scheduleData = [
             { phase: "第一阶段：方程与力学", days: [
-                { id: "1-15", date: "01.15", day: "周三", content: ["数学：复习二次根式", "物理：力的定义与分类"] },
-                { id: "1-16", date: "01.16", day: "周四", content: ["数学：一元二次方程定义", "物理：受力分解基础"] },
-                { id: "1-17", date: "01.17", day: "周五", content: ["数学：一元二次方程解法", "物理：牛顿第一定律"] },
-                { id: "1-18", date: "01.18", day: "周六", content: ["数学：一元二次方程应用", "物理：牛顿第二定律"] },
-                { id: "1-19", date: "01.19", day: "周日", content: ["阶段测试 01：方程与力"], isTest: true }
+                { id: "1-15", date: "01.15", day: "周四", content: ["数学：复习二次根式", "物理：力的定义与分类"] },
+                { id: "1-16", date: "01.16", day: "周五", content: ["数学：一元二次方程定义", "物理：受力分解基础"] },
+                { id: "1-17", date: "01.17", day: "周六", content: ["数学：一元二次方程解法", "物理：牛顿第一定律"] },
+                { id: "1-18", date: "01.18", day: "周日", content: ["数学：一元二次方程应用", "物理：牛顿第二定律"] },
+                { id: "1-19", date: "01.19", day: "周一", content: ["阶段测试 01：方程与力"], isTest: true }
             ]},
             { phase: "第二阶段：几何与压强浮力", days: [
-                { id: "1-20", date: "01.20", day: "周一", content: ["数学：勾股定理公式", "物理：压强定义及表达式"] },
-                { id: "1-21", date: "01.21", day: "周二", content: ["数学：勾股定理应用", "物理：大气与液体压强"] },
-                { id: "1-22", date: "01.22", day: "周三", content: ["数学：平行四边形性质", "物理：浮力定义与公式"] },
-                { id: "1-23", date: "01.23", day: "周四", content: ["数学：中位线定理", "物理：物体沉浮条件"] },
-                { id: "1-24", date: "01.24", day: "周五", content: ["阶段测试 02：几何与浮力"], isTest: true }
+                { id: "1-20", date: "01.20", day: "周二", content: ["数学：勾股定理公式", "物理：压强定义及表达式"] },
+                { id: "1-21", date: "01.21", day: "周三", content: ["数学：勾股定理应用", "物理：大气与液体压强"] },
+                { id: "1-22", date: "01.22", day: "周四", content: ["数学：平行四边形性质", "物理：浮力定义与公式"] },
+                { id: "1-23", date: "01.23", day: "周五", content: ["数学：中位线定理", "物理：物体沉浮条件"] },
+                { id: "1-24", date: "01.24", day: "周六", content: ["阶段测试 02：几何与浮力"], isTest: true }
             ]},
             { phase: "第三阶段：数据分析与机械能", days: [
-                { id: "1-25", date: "01.25", day: "周六", content: ["数学：加权平均数", "物理：功的定义与公式"] },
-                { id: "1-26", date: "01.26", day: "周日", content: ["数学：中位数与众数", "物理：功率计算"] },
-                { id: "1-27", date: "01.27", day: "周一", content: ["数学：方差计算", "物理：动能与势能"] },
-                { id: "1-28", date: "01.28", day: "周二", content: ["数学：方差的应用", "物理：机械能转化"] },
-                { id: "1-29", date: "01.29", day: "周三", content: ["阶段测试 03：数据与能量"], isTest: true }
+                { id: "1-25", date: "01.25", day: "周日", content: ["数学：加权平均数", "物理：功的定义与公式"] },
+                { id: "1-26", date: "01.26", day: "周一", content: ["数学：中位数与众数", "物理：功率计算"] },
+                { id: "1-27", date: "01.27", day: "周二", content: ["数学：方差计算", "物理：动能与势能"] },
+                { id: "1-28", date: "01.28", day: "周三", content: ["数学：方差的应用", "物理：机械能转化"] },
+                { id: "1-29", date: "01.29", day: "周四", content: ["阶段测试 03：数据与能量"], isTest: true }
             ]},
             { phase: "第四阶段：一次函数与机械", days: [
-                { id: "1-30", date: "01.30", day: "周四", content: ["数学：一次函数基础", "物理：杠杆的定义"] },
-                { id: "1-31", date: "01.31", day: "周五", content: ["数学：一次函数图像", "物理：杠杆的应用"] },
-                { id: "2-01", date: "02.01", day: "周六", content: ["数学：一次函数解析式", "物理：简单机械效率"] },
-                { id: "2-02", date: "02.02", day: "周日", content: ["数学：函数综合实战", "物理：滑轮组的作用"] },
-                { id: "2-03", date: "02.03", day: "周一", content: ["全阶段终极考核"], isTest: true }
+                { id: "1-30", date: "01.30", day: "周五", content: ["数学：一次函数基础", "物理：杠杆的定义"] },
+                { id: "1-31", date: "01.31", day: "周六", content: ["数学：一次函数图像", "物理：杠杆的应用"] },
+                { id: "2-01", date: "02.01", day: "周日", content: ["数学：一次函数解析式", "物理：简单机械效率"] },
+                { id: "2-02", date: "02.02", day: "周一", content: ["数学：函数综合实战", "物理：滑轮组的作用"] },
+                { id: "2-03", date: "02.03", day: "周二", content: ["全阶段终极考核"], isTest: true }
             ]}
         ];
 
@@ -94,7 +96,7 @@
         function render() {
             const container = document.getElementById('schedule-content');
             container.innerHTML = scheduleData.map(phase => `
-                <section>
+                <section id="section-${phase.phase}">
                     <h2 class="text-lg font-black text-gray-500 uppercase tracking-widest mb-6 flex items-center px-2">
                         <span class="w-10 h-1 bg-blue-500 mr-3 rounded"></span> ${phase.phase}
                     </h2>
@@ -102,7 +104,7 @@
                         ${phase.days.map(d => {
                             const isDone = completed.includes(d.id);
                             return `
-                                <div onclick="toggle('${d.id}')" class="group bg-white border-2 ${d.isTest ? 'border-red-200 bg-red-50/30' : 'border-white'} p-6 rounded-3xl shadow-md transition-all active:scale-[0.98] ${isDone ? 'completed' : ''}">
+                                <div id="card-${d.id}" onclick="toggle('${d.id}')" class="task-card group bg-white border-2 ${d.isTest ? 'border-red-200 bg-red-50/30' : 'border-white'} p-6 rounded-3xl shadow-md transition-all active:scale-[0.98] ${isDone ? 'completed' : ''}">
                                     <div class="flex justify-between items-center mb-4">
                                         <div class="flex items-center">
                                             <span class="text-2xl font-black ${d.isTest ? 'text-red-700' : 'text-gray-900'}">${d.date}</span>
@@ -131,14 +133,20 @@
 
         function toggle(id) {
             const idx = completed.indexOf(id);
+            let isMarkingDone = false;
             if (idx === -1) {
                 completed.push(id);
+                isMarkingDone = true;
                 if (navigator.vibrate) navigator.vibrate(60);
             } else {
                 completed.splice(idx, 1);
             }
             localStorage.setItem('gz_completed', JSON.stringify(completed));
             render();
+
+            if (isMarkingDone) {
+                setTimeout(() => autoScroll(), 400); 
+            }
         }
 
         function updateProgress() {
@@ -148,7 +156,37 @@
             document.getElementById('progress-percent').innerText = percent + '%';
         }
 
+        // 核心优化：智能选择滚动锚点
+        function autoScroll() {
+            let targetCard = null;
+            let targetSection = null;
+            let isFirstInPhase = false;
+
+            for (let phase of scheduleData) {
+                const firstUnfinished = phase.days.find(d => !completed.includes(d.id));
+                if (firstUnfinished) {
+                    targetCard = document.getElementById(`card-${firstUnfinished.id}`);
+                    // 检查这节课是否是该阶段的第一课
+                    if (firstUnfinished.id === phase.days[0].id) {
+                        isFirstInPhase = true;
+                        targetSection = document.getElementById(`section-${phase.phase}`);
+                    }
+                    break;
+                }
+            }
+
+            if (targetCard) {
+                // 如果是首课，滚动到 Section 标题；否则滚动到卡片
+                const scrollElement = isFirstInPhase ? targetSection : targetCard;
+                scrollElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                
+                targetCard.classList.add('ring-4', 'ring-blue-400', 'ring-opacity-50');
+                setTimeout(() => targetCard.classList.remove('ring-4', 'ring-blue-400', 'ring-opacity-50'), 1500);
+            }
+        }
+
         render();
+        autoScroll(); 
     </script>
 </body>
 </html>
