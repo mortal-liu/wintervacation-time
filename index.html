@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#2563eb">
     <title>寒假管理系统 | 张广洲</title>
+    
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/2693/2693507.png">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
     <style>
@@ -41,12 +47,10 @@
     </div>
 
     <div class="max-w-md mx-auto px-4 mt-6">
-        <div id="schedule-content" class="space-y-8">
-            </div>
+        <div id="schedule-content" class="space-y-8"></div>
     </div>
 
     <script>
-        // 日程数据 (保持你的手写表逻辑)
         const scheduleData = [
             { phase: "Phase 1: 二次根式 + 一元二次方程|力与运动", days: [
                 { id: "1-15", date: "01.15", day: "Wed", content: ["数：复习二次根式", "物：力的定义与分类"] },
