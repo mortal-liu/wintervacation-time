@@ -21,9 +21,9 @@
         .completed .status-badge { background-color: #6b7280 !important; }
         #progress-bar { transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
         
-        /* 关键修改：为阶段标题和任务卡片同时设置滚动间距，防止被导航栏遮挡 */
+        /* 预留出顶部导航栏的空间，防止定位后标题被挡住 */
         section, .task-card { 
-            scroll-margin-top: 220px; 
+            scroll-margin-top: 240px; 
             transition: all 0.3s ease;
         }
     </style>
@@ -59,14 +59,14 @@
     </div>
 
     <script>
-        // 日期与星期已校对：1.15是周四
+        // 日期已修正：1.15 是周四
         const scheduleData = [
             { phase: "第一阶段：方程与力学", days: [
                 { id: "1-15", date: "01.15", day: "周四", content: ["数学：复习二次根式", "物理：力的定义与分类"] },
                 { id: "1-16", date: "01.16", day: "周五", content: ["数学：一元二次方程定义", "物理：受力分解基础"] },
                 { id: "1-17", date: "01.17", day: "周六", content: ["数学：一元二次方程解法", "物理：牛顿第一定律"] },
                 { id: "1-18", date: "01.18", day: "周日", content: ["数学：一元二次方程应用", "物理：牛顿第二定律"] },
-                { id: "1-19", date: "01.19", day: "周一", content: ["阶段测试 01：方程与力"], isTest: true }
+                { id: "1-19", date: "01.19", day: "周一", content: ["阶段测试 01：方程与力学"], isTest: true }
             ]},
             { phase: "第二阶段：几何与压强浮力", days: [
                 { id: "1-20", date: "01.20", day: "周二", content: ["数学：勾股定理公式", "物理：压强定义及表达式"] },
@@ -143,7 +143,6 @@
             }
             localStorage.setItem('gz_completed', JSON.stringify(completed));
             render();
-
             if (isMarkingDone) {
                 setTimeout(() => autoScroll(), 400); 
             }
@@ -156,17 +155,17 @@
             document.getElementById('progress-percent').innerText = percent + '%';
         }
 
-        // 核心优化：智能选择滚动锚点
+        // 核心优化：增强型自动定位逻辑
         function autoScroll() {
             let targetCard = null;
             let targetSection = null;
             let isFirstInPhase = false;
 
+            // 寻找第一个待学习的任务
             for (let phase of scheduleData) {
                 const firstUnfinished = phase.days.find(d => !completed.includes(d.id));
                 if (firstUnfinished) {
                     targetCard = document.getElementById(`card-${firstUnfinished.id}`);
-                    // 检查这节课是否是该阶段的第一课
                     if (firstUnfinished.id === phase.days[0].id) {
                         isFirstInPhase = true;
                         targetSection = document.getElementById(`section-${phase.phase}`);
@@ -176,8 +175,8 @@
             }
 
             if (targetCard) {
-                // 如果是首课，滚动到 Section 标题；否则滚动到卡片
                 const scrollElement = isFirstInPhase ? targetSection : targetCard;
+                // 使用 block: 'start' 确保任务被顶到最上方
                 scrollElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 
                 targetCard.classList.add('ring-4', 'ring-blue-400', 'ring-opacity-50');
@@ -185,8 +184,18 @@
             }
         }
 
+        // 核心优化：监听“切回应用”事件，实现自动对齐
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible') {
+                autoScroll();
+            }
+        });
+
         render();
-        autoScroll(); 
+        // 增加延迟，确保移动端浏览器渲染完毕后再定位
+        window.addEventListener('load', () => {
+            setTimeout(autoScroll, 600);
+        });
     </script>
 </body>
 </html>
